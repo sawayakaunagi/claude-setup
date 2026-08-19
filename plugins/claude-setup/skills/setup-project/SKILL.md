@@ -27,6 +27,7 @@ C / T / K / V / S / E）を共有しているので、生成後にそのまま�
 | `reference/settings-catalog.md` | Phase 3 で settings.json を組むとき |
 | `reference/rules-and-docs.md` | Phase 3・CLAUDE.md の置き場所や `.claude/rules/` を考えるとき |
 | `reference/integrations.md` | Phase 4 |
+| `reference/model-routing.md` | Phase 3・モデル運用の節を書くとき／カスタム agent を作るとき |
 | `reference/harness-lifecycle.md` | Phase 5・引き渡しで「育て方」を渡すとき |
 
 ---
@@ -160,6 +161,9 @@ Claude Code が自動承認しないのは**正しい挙動**。対話セッシ�
 - CLAUDE.md に **「ハーネスの育て方」の4行**（`harness-lifecycle.md` 末尾の定型。
   失敗2回で昇格・3回でスキル化・棚卸しの合図・再実行で補強）。
   「Skills: まだ無し」の1行はこの節に含まれるので別立てにしない
+- CLAUDE.md に **「モデル運用」の節**（`model-routing.md` の雛形。
+  判断軸は役割×検証可能性×量）。**グローバル CLAUDE.md に方針が既にあれば差分だけ**、
+  差分が無ければ節ごと省略。カスタム agent を生成する場合は `model:` を必ず明示する
 
 ### `.claude/rules/` は初回に作らない
 
