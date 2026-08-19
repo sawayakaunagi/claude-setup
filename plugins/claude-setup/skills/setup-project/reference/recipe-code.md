@@ -152,9 +152,12 @@
 | TDD ループ（`red-test` → `delegate-implement` → `verify-test`） | 仕様が `REQUIREMENTS.md` 等で先に書ける案件。JS/Jest 前提のものは前提の一致を確認してから |
 | `akapen`（作る前に1案を人に見せる） | UI・設計方針など、作ってから直すと高くつくもの |
 | `bestofn` | 実装方針が割れていて、複数案を比べたいとき |
+| `beads`（`bd`） | 依存関係・ブロッカーが多い長期案件。組み込み TODO では前後関係が残らないとき |
+| `toolhint` | 自作 CLI やチーム内の造語があり、「書いてあるのに読まれない」が起きているとき |
 | CI（GitHub Actions） | 既に `.github/workflows/` があるなら CLAUDE.md にコマンドを転記。無いなら初回は作らない |
 
 **押し付けない。** 検出して「あります、使いますか」と示すだけにする。
+各ツールの配線レシピ（初期化コマンド・CLAUDE.md に書く1行・落とし穴）は `integrations.md` §3。
 
 ---
 

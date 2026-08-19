@@ -26,16 +26,18 @@
 
 ---
 
-## 参照しているが同梱していないプラグイン
+## 参照しているが同梱していないツール
 
-`/setup-project` の Phase 4 は、以下を**検出して提示するだけ**です。
+`/setup-project` の Phase 4 は、以下を**検出して配線を提案するだけ**です。
 同梱もインストールもしません。
 
-| プラグイン | 作者 | ライセンス |
-|---|---|---|
-| [eval-loop](https://github.com/AI-Driven-R-D-Dept) | Masa | MIT |
-| [akapen](https://github.com/AI-Driven-R-D-Dept/akapen) | kyohei（bond-ai.co.jp） | MIT |
-| bestofn | AI-Driven-R-D-Dept | 表記なし |
+| ツール | 作者 | ライセンス | 入手 |
+|---|---|---|---|
+| eval-loop | Masa | MIT（plugin.json） | 配布元（AI駆動開発研究部メンバーシップ）※公開リポジトリではない |
+| akapen | kyohei（bond-ai.co.jp） | MIT | 同上 |
+| bestofn | AI-Driven-R-D-Dept | 表記なし | 同上 |
+| foyer / toolhint | AI-Driven-R-D-Dept | — | 同上 |
+| beads (`bd`) | gastownhall | 配布元参照 | public（github.com/gastownhall/beads） |
 
 ### なぜ MIT のものも同梱しないのか
 
