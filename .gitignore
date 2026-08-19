@@ -1,0 +1,16 @@
+# 手元でだけ使う同梱物 — public には出さない
+# （使い方の README だけは追跡する）
+/local/*
+!/local/README.md
+
+# 教材として取り込んだ他者の記事本文 — public には出さない
+/reference/articles/
+
+# 教材として取り込んだソースコード — 出所が明確で再配布可のものだけ個別に許可する
+/reference/sources/
+
+# 検証用の使い捨てディレクトリ
+/tmp-e2e/
+
+.DS_Store
+node_modules/

@@ -1,0 +1,19 @@
+{
+  "name": "claude-setup",
+  "version": "0.1.0",
+  "description": "プロジェクト立ち上げハーネスキット。setup-project が種別 (コード開発型 / 文書・ワークフロー型) を判定して CLAUDE.md・settings.json・hooks・連携を生成し、setup-global が ~/.claude を初期化する。audit-harness の生成側の双子として、同じ原則語彙 (agent-essence) を共有する。",
+  "author": {
+    "name": "sawayakaunagi"
+  },
+  "homepage": "https://github.com/sawayakaunagi/claude-setup",
+  "repository": "https://github.com/sawayakaunagi/claude-setup",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "setup",
+    "bootstrap",
+    "harness-design",
+    "skill-design",
+    "onboarding"
+  ]
+}

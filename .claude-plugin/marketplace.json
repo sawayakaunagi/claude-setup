@@ -1,0 +1,15 @@
+{
+  "name": "claude-setup",
+  "description": "プロジェクト立ち上げハーネスキット — 新しいプロジェクトに CLAUDE.md / settings.json / skills / hooks を一括で敷く生成スキル群",
+  "owner": {
+    "name": "sawayakaunagi"
+  },
+  "plugins": [
+    {
+      "name": "claude-setup",
+      "source": "./plugins/claude-setup",
+      "version": "0.1.0",
+      "description": "setup-project (プロジェクトのハーネスを敷く/補強する) / setup-global (~/.claude の初期化) / design-skill (スキル化の判断と境界設計)"
+    }
+  ]
+}
