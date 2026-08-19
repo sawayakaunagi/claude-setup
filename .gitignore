@@ -6,6 +6,9 @@
 # 教材として取り込んだ他者の記事本文 — public には出さない
 /reference/articles/
 
+# 矛盾ログ — 記事本文の引用を含むため public には出さない
+/reference/CONTRADICTIONS.md
+
 # 教材として取り込んだソースコード — 出所が明確で再配布可のものだけ個別に許可する
 /reference/sources/
 

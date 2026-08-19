@@ -23,6 +23,10 @@ Claude Code を**これから使い始める人**が最初に入れることを�
 そのセッションでは `Unknown skill: setup-project` になります。
 「インストール成功」は「使える」の証拠ではありません。ここが一番よく詰まります。
 
+> **習慣として:** `plugin marketplace add` は第三者コードの導入です（スキルや hook は
+> インストール後に実行されます）。このプラグインに限らず、入れる前に中身を読む習慣を
+> おすすめします。本リポジトリは全ファイルがこのページから読めます。
+
 ---
 
 ## 使い方
@@ -97,6 +101,29 @@ Claude Code を**これから使い始める人**が最初に入れることを�
 
 ---
 
+## 公式の `/init` との違い
+
+Claude Code には標準で `/init` があり、CLAUDE.md を自動生成します
+（`CLAUDE_CODE_NEW_INIT=1` を設定すると CLAUDE.md・skills・hooks を対話的に作るフローになります）。
+
+**competing しません。主眼が違います。**
+
+| | `/init`（公式） | `/setup-project`（本キット） |
+|---|---|---|
+| 主眼 | コードベースを読んで **CLAUDE.md を書く** | **権限と検証の設計**（deny / hook / 評価基準の保護） |
+| 対象 | コードベース前提 | コード開発型 **/ 文書ワークフロー型**を判定して分岐 |
+| permissions | 扱わない | 意図別カタログから必要な部品だけ組む |
+| 設計の根拠 | — | 原則IDで一貫。`audit-harness` でそのまま答え合わせできる |
+| 既存構成 | 提案として提示 | 上書きせず差分だけ足す（補強モード） |
+
+**おすすめの併用**:
+
+- コードベースが大きい → 先に `/init` で CLAUDE.md を作り、`/setup-project` で権限と hook を足す
+- 新規・小規模・文書系 → `/setup-project` だけで足りる
+
+`/setup-project` は `/init` の生成物を尊重します。既に CLAUDE.md があれば補強モードに入り、
+上書きせず不足分（permissions・hooks・rules）だけを提案します。
+
 ## SessionStart の案内について
 
 `CLAUDE.md` も `.claude/settings.json` も無いディレクトリでセッションを開くと、
@@ -166,6 +193,10 @@ claude plugin validate .                        # marketplace.json
 claude plugin details claude-setup@claude-setup # スキル/hook が認識されたか・トークン費用
 bash -n plugins/claude-setup/hooks/*.sh         # シェル構文
 ```
+
+> **コスト注意:** `claude -p`（headless 実行）は 2026-06-15 以降、サブスク枠ではなく
+> **Agent SDK 用の月額クレジット**を消費します。E2E 検証で headless を多用する場合は
+> クレジット残量を確認してから。手で打つ対話セッションは従来どおりです。
 
 `details` の **Always-on** は全セッションに常時載る費用です。ここが膨らんでいたら
 description を削るサインです（現状 ~403 tok）。
