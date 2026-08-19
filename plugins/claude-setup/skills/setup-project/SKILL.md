@@ -25,6 +25,7 @@ C / T / K / V / S / E）を共有しているので、生成後にそのまま�
 | `reference/settings-catalog.md` | Phase 3 で settings.json を組むとき |
 | `reference/rules-and-docs.md` | Phase 3・CLAUDE.md の置き場所や `.claude/rules/` を考えるとき |
 | `reference/integrations.md` | Phase 4 |
+| `reference/harness-lifecycle.md` | Phase 5・引き渡しで「育て方」を渡すとき |
 
 ---
 
@@ -150,8 +151,13 @@ Claude Code が自動承認しないのは**正しい挙動**。対話セッシ�
 
 - `.gitignore` に Claude 関連の行が無ければ追記を提案
   （`.claude/settings.local.json`、生成物の一時ディレクトリ等）
-- CLAUDE.md に **「完了の定義」セクション**（→C-4）
-- CLAUDE.md に **「Skills: まだ無し。同じ手順を3回繰り返したら `/design-skill`」** の1行
+- CLAUDE.md に **「完了の定義」セクション**（→C-4）。
+  Phase 2「完了をどう判定するか」の答えを**検証の階段**（`harness-lifecycle.md` §3）に
+  対応させる: テストで判定できる→機械の○×だけで足りる ／ 客観テストが無い→内ループを軸に ／
+  好み・視覚が絡む→人間の凝縮点を要所に
+- CLAUDE.md に **「ハーネスの育て方」の4行**（`harness-lifecycle.md` 末尾の定型。
+  失敗2回で昇格・3回でスキル化・棚卸しの合図・再実行で補強）。
+  「Skills: まだ無し」の1行はこの節に含まれるので別立てにしない
 
 ### `.claude/rules/` は初回に作らない
 
@@ -225,13 +231,17 @@ printf '{"file_path":"<対象ファイル>"}' | bash .claude/hooks/<script>.sh; 
 
 ### 5-3. 報告
 
-以下を必ず伝える。
+`reference/harness-lifecycle.md` を読み、以下を必ず伝える。
 
 - **何を作ったか** — ファイル一覧
 - **何を入れなかったか、なぜか** — deny を絞った理由など
 - **プレースホルダが残っている箇所** — 文書型の `evaluation.md` は特に
 - **次のセッションから効くこと** — CLAUDE.md も settings.json も、今すぐには反映されない
 - **後から緩められること** — きつすぎたら言ってほしい、と明示する
+- **これは骨格であり、育て方が本体であること** — 失敗の昇格ラダーと
+  記憶の格上げ（lifecycle §1〜2）を1段落で要約して渡す。
+  生成した各部品（hook・rules・スキル候補・連携）は別々の道具ではなく、
+  このサイクルの中の持ち場である、という位置づけまで含める
 
 ### 5-4. 答え合わせ
 
