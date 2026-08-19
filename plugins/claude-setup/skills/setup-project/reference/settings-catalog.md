@@ -304,6 +304,47 @@ exit 0
 
 ---
 
+## 7.5 スキル使用ログ — 棚卸しの定量データ（→E-1.1 / K-2.3）
+
+スキルの棚卸しは「説明する機会に自然に気づく」だけでは漏れる。
+**使用/未使用を事実で切り分ける観測面**が無いと、増え続けるスキルを消す根拠が作れない。
+呼び出し時刻とスキル名**だけ**を記録する（引数は記録しない —
+自由入力に PII が載りうるため）。
+
+```jsonc
+"hooks": {
+  "PostToolUse": [
+    {
+      "matcher": "Skill",
+      "hooks": [
+        { "type": "command", "command": "bash .claude/hooks/skill-usage.sh" }
+      ]
+    }
+  ]
+}
+```
+
+`.claude/hooks/skill-usage.sh`:
+
+```bash
+#!/usr/bin/env bash
+# スキル呼び出しの定量計測。観測面が本作業を壊してはならない＝常に exit 0。
+set -uo pipefail
+dir="${CLAUDE_PROJECT_DIR:-$(pwd)}"
+input="$(cat 2>/dev/null || true)"
+skill="$(printf '%s' "$input" | sed -nE 's/.*"skill"[[:space:]]*:[[:space:]]*"([^"]*)".*/\1/p' | head -1)"
+[ -n "$skill" ] || exit 0
+case "$skill" in *[!A-Za-z0-9:._-]*) exit 0 ;; esac   # 想定外の値でログ行を壊さない
+log="$dir/.claude/skill-usage.log"
+mkdir -p "$dir/.claude" 2>/dev/null || exit 0
+printf '%s\t%s\n' "$(date +%Y-%m-%dT%H:%M:%S%z)" "$skill" >>"$log" 2>/dev/null || true
+exit 0
+```
+
+- `.claude/skill-usage.log` は **gitignore に追加する**（マシン固有の運用ログ）
+- 棚卸し時は `cut -f2 .claude/skill-usage.log | sort | uniq -c | sort -rn` で使用回数が出る
+- 初期からでも安い（1呼び出し1行）。スキルが増えてから入れても過去は取れない
+
 ## 8. PreToolUse — 関門（→S-1.5 fail-closed）
 
 permissions の glob で表しきれない条件はここで見る。`exit 2` でブロックし、
